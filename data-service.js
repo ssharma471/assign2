@@ -1,55 +1,74 @@
-const fs = require('fs');
-let employees = [];
-let departments = [];
+//Name: Sidhant Sharma Student ID: 123151219 Date: 04, October 2022
+
+const fp = require('fs');
+let Emp = [], Dep = [], Man = [];
 
 module.exports.initialize = function () {
-  return new Promise((resolve, reject) => {
-    fs.readFile('./data/employees.json', (err, data) => {
-      if (err) {
-        reject(err);
+  return new Promise((resolve, reject) => 
+  {
+    fp.readFile('./data/employees.json', (err, data) => {
+      if (err) 
+      {
+        reject("unable to read file");
       }
-      employees = JSON.parse(data);
+      Emp = JSON.parse(data);
       resolve();
     });
-    fs.readFile('./data/departments.json', (err, data) => {
-      if (err) {
-        reject(err);
+
+    fp.readFile('./data/departments.json', (err, data) => {
+      if (err) 
+      {
+        reject("unable to read file");
       }
-      departments = JSON.parse(data);
+      Dep = JSON.parse(data);
       resolve();
     });
   });
 };
 
-module.exports.getAllEmloyess = function () {
+module.exports.getAllEmployees = function () {
   return new Promise((resolve, reject) => {
-    if (employees.length == 0) {
-      reject('No Employee Found!');
+    if (Emp.length > 0) {
+
+      resolve(Emp);
+   
     }
-    resolve(employees);
+    reject('No Employee Found!');
+
   });
 };
+
+
 
 module.exports.getAllManagers = function () {
   return new Promise((resolve, reject) => {
-    var managers = [];
-    for (let i = 0; i < employees.length; i++) {
-      if (employees[i].isManager == true) {
-        managers.push(employees[i]);
-      }
+
+    for (let i = 0; i < Emp.length; i++) {
+      if (Emp[i].isManager == true) 
+       Man.push(Emp[i]);
+
+      
     }
-    if (managers.length == 0) {
-      reject('No Managers Found!');
+
+    if (Man.length > 0) {
+      resolve(Emp);
     }
-    resolve(employees);
+    
+    reject('No Managers Found!');
+
   });
 };
 
 module.exports.getAllDepartments = function () {
   return new Promise((resolve, reject) => {
-    if (departments.length == 0) {
-      reject('No Department Found!');
+
+    if (Dep.length > 0) {
+
+      resolve(Dep);
+
     }
-    resolve(departments);
+
+
+    reject('No Department Found!');
   });
 };
