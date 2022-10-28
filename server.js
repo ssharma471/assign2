@@ -1,16 +1,15 @@
 /*************************************************************************
-* BTI325– Assignment 2
-* I declare that this assignment is my own work in accordance with Seneca Academic
-Policy. No part * of this assignment has been copied manually or electronically from any
-other source
+* BTI325– Assignment 3
+* I declare that this assignment is my own work in accordance with Seneca Academic Policy.
+No part of this assignment has been copied manually or electronically from any other source.
 * (including 3rd party web sites) or distributed to other students.
 *
-* Name: Sidhant Sharma Student ID: 123151219 Date: 04, October 2022
+* Name: Sidhant Sharma       Student ID: 123151219      Date: 25-10-2022
 *
-* Your app’s URL (from Cyclic) : https://fierce-tuna-threads.cyclic.app/
-*One of my classmates Ujjwal and my brother helped me for recalling the concepts and made me understand the things in a better way 
-
-*************************************************************************/
+* Your app’s URL (from Cyclic Heroku) that I can click to see your application:
+* https://infinite-woodland-14729.herokuapp.com/
+*
+*************************************************************************/ 
 var express = require("express");
 var path = require("path");
 var dataservice = require('./data-service.js');
