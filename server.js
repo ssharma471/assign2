@@ -59,16 +59,16 @@ app.get('/images/add', function (req, res) {
 
 //Employees
 app.get('/employees', function (req, res) {
-  if (req.query.department) {
+   if (req.query.employeeNum) {
+    dataservice.getEmployeeByNum(req.query.employeeNum).then((dataservice) => {
+      res.json(dataservice);
+    });
+  }
+  else if (req.query.department) {
     dataservice.getEmployeesByDepartment(req.query.department).then((dataservice) => {
       res.json(dataservice);
     });
 
-  }
-  else if (req.query.employeeNum) {
-    dataservice.getEmployeeByNum(req.query.employeeNum).then((dataservice) => {
-      res.json(dataservice);
-    });
   }
   else if (req.query.status) {
     dataservice.getEmployeesByStatus(req.query.status).then((dataservice) => {
@@ -105,19 +105,6 @@ app.get("/employee/:empNum", (req, res) => {
   });
 
 });
-
-//POST ROUTE (REDIREDT TO ROUTE /images)
-app.post("/images/add", upload.single("imageFile"), (req, res) => {
-  res.redirect("/images");
-});
-
-//POST ROUTE (REDIREDT TO ROUTE /employees)
-app.post("/employees/add", (req, res) => {
-  dataservice.addEmployee(req.body).then((dataservice) =>{
-      res.redirect("/employees");
-  });
-
-})
 // Managers
 app.get('/managers', function (req, res) {
   dataservice.getAllManagers().then((dataservice) => {
@@ -138,6 +125,20 @@ app.get('/departments', function (req, res) {
 app.use(function (req, res) {
   res.sendFile(path.join(__dirname, '/views/error.html'));
 });
+
+//POST ROUTE (REDIREDT TO ROUTE /images)
+app.post("/images/add", upload.single("imageFile"), (req, res) => {
+  res.redirect("/images");
+});
+
+//POST ROUTE (REDIREDT TO ROUTE /employees)
+app.post("/employees/add", (req, res) => {
+  dataservice.addEmployee(req.body).then((dataservice) =>{
+      res.redirect("/employees");
+  });
+
+})
+
 
 dataservice
   .initialize()
