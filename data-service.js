@@ -9,7 +9,7 @@ module.exports.initialize = function () {
       if (err) {
         reject("unable to read file");
       }
-      Emp = JSON.parse(data);
+      Emp = JSON.parse(data) ; 
       resolve();
     });
 
