@@ -7,9 +7,9 @@ module.exports.initialize = function () {
   return new Promise((resolve, reject) => {
     fp.readFile('./data/employees.json', (err, data) => {
       if (err) {
-        reject("unable to read file");
+        reject("unable to read file") ;
       }
-      Emp = JSON.parse(data) ; 
+      Emp = JSON.parse(data); 
       resolve();
     });
 
