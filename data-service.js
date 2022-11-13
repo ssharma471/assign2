@@ -1,5 +1,5 @@
-//Name: Sidhant Sharma Student ID: 123151219 Date: 25, October 2022
-// One of my classmates Ujjwal and my brother helped me for recalling the concepts and made me understand the things in a better way 
+//Name: Sidhant Sharma Student ID: 123151219 Date: 07, November, 2022
+// My classmates Samarth, Kush and my brother helped me in assignment 4 for recalling the concepts and made me understand the things in a better way 
 const fp = require('fs');
 let Emp = [], Dep = [], Man = [];
 
@@ -37,24 +37,24 @@ module.exports.getAllEmployees = function () {
 
 
 
-module.exports.getAllManagers = function () {
-  return new Promise((resolve, reject) => {
+// module.exports.getAllManagers = function () {
+//   return new Promise((resolve, reject) => {
 
-    for (let i = 0; i < Emp.length; i++) {
-      if (Emp[i].isManager == true)
-        Man.push(Emp[i]);
+//     for (let i = 0; i < Emp.length; i++) {
+//       if (Emp[i].isManager == true)
+//         Man.push(Emp[i]);
 
 
-    }
+//     }
 
-    if (Man.length > 0) {
-      resolve(Emp);
-    }
+//     if (Man.length > 0) {
+//       resolve(Emp);
+//     }
 
-    reject('No Managers Found!');
+//     reject('No Managers Found!');
 
-  });
-};
+//   });
+// };
 
 module.exports.getAllDepartments = function () {
   return new Promise((resolve, reject) => {
@@ -106,7 +106,7 @@ module.exports.getEmployeesByDepartment = function(department) {
       }
     }
   
-  if (employees.length == 0) 
+  if (Emp.length == 0) 
   {
     reject("no results returned");
   }
@@ -115,23 +115,23 @@ module.exports.getEmployeesByDepartment = function(department) {
 
 }
 
-module.exports.getEmployeesByManager = function(manager) {
-  return new Promise((resolve, reject)=> {
-    let vals = [];
-    for (let i= 0; i < Emp.length; i++) {
-      if (Emp[i].employeeManagerNum == manager) {
-        vals.push(Emp[i]);
-      }
-    }
+// module.exports.getEmployeesByManager = function(manager) {
+//   return new Promise((resolve, reject)=> {
+//     let vals = [];
+//     for (let i= 0; i < Emp.length; i++) {
+//       if (Emp[i].employeeManagerNum == manager) {
+//         vals.push(Emp[i]);
+//       }
+//     }
   
-  if (Emp.length == 0) {
-    reject("no results returned");
-  }
-  resolve(vals);
+//   if (Emp.length == 0) {
+//     reject("no results returned");
+//   }
+//   resolve(vals);
     
-  });
+//   });
 
-}
+// }
 
 module.exports.getEmployeeByNum = function(num) {
   return new Promise((resolve, reject)=> {
@@ -149,4 +149,27 @@ module.exports.getEmployeeByNum = function(num) {
     
   });
 
+}
+
+
+
+module.exports.updateEmployee = function(employeeData) {
+  return new Promise((resolve, reject)=> {
+    let x = false;
+    for (let i= 0; i < Emp.length; i++) {
+      if (Emp[i].SSN == employeeData.SSN) {
+        Emp[i] = employeeData;
+        Emp[i].employeeNum= i + 1;
+          x = true;
+      }
+    }
+
+    if (x == false){
+      reject("Data Not found");
+    } else{
+      resolve();
+    }
+  
+
+  });
 }
