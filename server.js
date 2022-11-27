@@ -21,7 +21,7 @@ var app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
-var HTTP_PORT = process.env.PORT || 8081;
+var HTTP_PORT = process.env.PORT || 8080;
 
 function onHTTPStart() {
   console.log('Express http server listening on: ' + HTTP_PORT);
